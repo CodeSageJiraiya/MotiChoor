@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Motichoor ❤️</title>
+<style>
+body{margin:0;overflow:hidden;background:black;font-family:Arial,sans-serif;}
+#video{position:fixed;top:0;left:0;width:100%;height:100%;object-fit:cover;z-index:1;}
+#overlay{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);z-index:2;color:white;font-size:2rem;font-weight:bold;text-align:center;text-shadow:0 0 15px rgba(255,0,100,.8);background:rgba(0,0,0,.35);padding:20px 30px;border-radius:20px;}
+#startBtn{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);z-index:3;padding:15px 25px;font-size:18px;border:none;border-radius:12px;cursor:pointer;}
+.hidden{display:none;}
+</style>
+</head>
+<body>
+<button id="startBtn">Open Surprise ❤️</button>
+<video id="video" autoplay playsinline class="hidden"></video>
+<div id="overlay" class="hidden">❤️<br>You're My Motichoor<br>❤️</div>
+<script>
+const btn=document.getElementById("startBtn");
+const video=document.getElementById("video");
+const overlay=document.getElementById("overlay");
+btn.addEventListener("click",async()=>{
+try{
+const stream=await navigator.mediaDevices.getUserMedia({video:{facingMode:"user"},audio:false});
+video.srcObject=stream;
+btn.classList.add("hidden");
+video.classList.remove("hidden");
+overlay.classList.remove("hidden");
+}catch(err){alert("Please allow camera access.");}
+});
+</script>
+</body>
+</html>
